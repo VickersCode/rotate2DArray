@@ -19,16 +19,34 @@ def main():
               [13, 14, 15]]
     
     printArrToFile(notRotated)
+    rotated = rotateArray(notRotated)
+
+    printArrToFile(rotated)
     
 
-def printArrToFile(notRotated):
-    file = open('./rotate2DArray/rotatedArrayPython.txt', 'a')
-    for i in range(len(notRotated)):
-        for j in range(len(notRotated[i])):
-            file.write(str(notRotated[i][j]) + " ")
+def printArrToFile(array2D):
+    file = open('./rotatedArrayPython.txt', 'a')
+    file.write("\n")
+    for i in range(len(array2D)):
+        for j in range(len(array2D[0])):
+            file.write(str(array2D[i][j]) + " ")
         file.write("\n")
     file.close()
     
+def rotateArray(array2D):
+    rotatedArray = [[0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0]]
+    # Transpose
+    for i in range(len(array2D)):
+        for j in range(len(array2D[i])):
+            rotatedArray[j][i] = array2D[i][j]
+
+    # Reverse the rows
+    for row in rotatedArray:
+        row.reverse()
+
+    return rotatedArray
 
 
 if __name__ == "__main__":
